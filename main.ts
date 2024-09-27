@@ -43,26 +43,20 @@ while (dealerScore < 17) {
   dealerScore = calculateHandValue(dealerHand)
 }
 
-// 2. 플레이어가 21점을 달성하면 블랙잭 (즉시 승리).
-if (playerScore > 21) {
-  console.log('You bust. Dealer wins.')
-} else if (dealerScore > 21) {
-	console.log('Dealer busts. You win!')
-}
+console.log(
+  (() => {
+    // 2. 플레이어가 21점을 달성하면 블랙잭 (즉시 승리).
+    if (playerScore > 21) return 'You bust. Dealer wins.'
+    if (dealerScore > 21) return 'Dealer busts. You win!'
 
-else if (playerScore === 21) {
-  console.log('Blackjack! You win!')
-} else if (dealerScore === 21) {
-  console.log('Dealer Blackjack! You lose.')
-}
+    if (playerScore === 21) return 'Blackjack! You win!'
 
-// 4. 카드 합계가 같은 경우 무승부 (Draw)
-if (playerScore === dealerScore) {
-  console.log('Push (Draw)')
-}
+    if (dealerScore === 21) return 'Dealer Blackjack! You lose.'
 
-else if (playerScore > dealerScore) {
-  console.log('You win!')
-} else if (playerScore < dealerScore) {
-  console.log('Dealer wins.')
-}
+    // 4. 카드 합계가 같은 경우 무승부 (Draw)
+    if (playerScore === dealerScore) return 'Push (Draw)'
+
+    if (playerScore > dealerScore) return 'You win!'
+    if (playerScore < dealerScore) return 'Dealer wins.'
+  })()
+)
